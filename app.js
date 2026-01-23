@@ -17,12 +17,12 @@ app.use(helmet());
 app.use(mongoSanitize());
 app.use(hpp());
 app.use(cors());
+app.use(express.json({ limit: '10mb'}));
+app.use(express.urlencoded({ limit: '10mb'}));
 
 const limiter= rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // limit each IP to 100 requests per windowMs
-    standardHeaders: true,
-    legacyHeaders: false,
 });
 app.use(limiter);
 
@@ -31,11 +31,20 @@ app.use(limiter);
 let url="mongodb+srv://Nahi:01531949342@cluster0.no97x.mongodb.net/"
 
 let option = {
-    user: "Nahi",
-    pass: "01531949342",
-    dbName: "Cluster0"
-}
+    user: process.env.DB_USER,
+    pass: process.env.DB_PASS,
+    autoIndex:true,
+    serverSelectionTimeoutMS: 50000
+};
+
+mongoose.connect(url)
+    .then((res)=>{
+        console.log("Database connected successfully");
+    }).catch((err)=>{
+        console.log("Database connection failed:", err);
+    });
 
 app.use(express.json());
 
 
+module.exports= app;
