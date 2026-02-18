@@ -26,11 +26,11 @@ exports.register = async (req, res)=> {
 // Login
 exports.login = async (req, res)=> {
     try {
-        let { email, password } = req.body;
+        let {email, password} = req.body;
 
-        let user = await userModel.findOne({ email }) ;
+        let user = await userModel.findOne({email});
 
-        if(!user){
+        if (!user) {
             return res.status(401).json({
                 success: false,
                 message: "Authentication failed. User not found."
@@ -39,19 +39,17 @@ exports.login = async (req, res)=> {
         //isMatch Password
         let isMatch = await bcrypt.compare(password, user.password);
 
-        if (isMatch){
-            let token = EncodeToken (user.email,user._id.toString());
+        if (isMatch) {
+            let token = EncodeToken(user.email, user._id);
 
-            let option= {
-                maxAGE : process.env.Cookie_expire_Time,
+            let option = {
+                maxAGE: process.env.Cookie_expire_Time,
                 httpOnly: true,
-                sameSite : "none",
+                sameSite: "none",
                 secure: true
             };
-
             //Set Cookie
-            res.cookie("token",token,option);
-
+            res.cookie("token", token, option);
             res.status(200).json({
                 success: true,
                 message: "Login successful",
@@ -60,10 +58,14 @@ exports.login = async (req, res)=> {
                     email: user.email,
                 },
             });
-
+        } else {
+            return res.status(401).json({
+                success: false,
+                message: "Password not matched."
+            });
         }
-        }
-    catch(e) {
+    }
+catch(e) {
         res.status(500).json({
             success: false,
             error: e.toString(),
@@ -125,3 +127,34 @@ exports.logout =(req,res)=> {
         })
     }
 }
+
+//Update
+exports.update=async (req,res)=>
+{
+    try {
+        let {email, password} = req.body;
+        let userID = req.headers._id;
+
+        let updatedData = {email};
+
+        if (password) {
+            let hashPassword =await bcrypt.hashSync(password, 10);
+            updatedData.password = hashPassword;
+        }
+         let result = await userModel.findByIdAndUpdate(userID, updatedData,
+             {new: true});
+
+        res.status(200).json({
+            success: true,
+            message: "User updated successfully"
+        });
+    }
+        catch(e)
+        {
+            res.status(500).json({
+                success: false,
+                error: e.toString(),
+                message: e.message
+            });
+        }
+    }

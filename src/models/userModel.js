@@ -19,10 +19,11 @@ const DataSchema = new mongoose.Schema({
 
 //Hash Password before saving
 
-DataSchema.pre("save", async function(){
-    if(!this.isModified("password")) return ;
+DataSchema.pre("save", async function(next){
+    if(!this.isModified("password")) return next() ;
 
     this.password = await bcrypt.hash(this.password,10);
+    next();
 });
 
 const userModel = mongoose.model('users', DataSchema);
