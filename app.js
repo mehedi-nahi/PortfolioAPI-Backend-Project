@@ -29,7 +29,7 @@ app.use(express.urlencoded({ limit: '10mb'}));
 
 //Database Connection
 
-let url="mongodb+srv://Nahi:01531949342@cluster0.no97x.mongodb.net/PortfolioAPI"
+let url= process.env.DB_URL;
 
 let option = {
     user: process.env.DB_USER,
