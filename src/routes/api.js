@@ -4,6 +4,7 @@ const middlewares = require("../middlewares/authVerification");
 const experienceController = require("../controllers/experienceController");
 const educationController = require("../controllers/educationController");
 const advantageController = require("../controllers/advantageController.js");
+const portfolioController = require("../controllers/portfolioController.js");
 
 let router = express.Router();
 
@@ -34,4 +35,12 @@ router.get(`/alladvantage`, advantageController.allAdvantage);
 router.get(`/single-advantage/:id`, advantageController.singleAdvantage);
 router.post(`/update-advantage/:id`,middlewares, advantageController.updateAdvantage);
 router.delete(`/delete-advantage/:id`, middlewares, advantageController.deleteAdvantage);
+
+// Portfolio
+router.post(`/create-portfolio`, middlewares, portfolioController.createPortfolio);
+router.get(`/allportfolio`, portfolioController.allPortfolio);
+router.get(`/single-portfolio/:id`, portfolioController.singlePortfolio);
+router.post(`/update-portfolio/:id`,middlewares, portfolioController.updatePortfolio);
+router.delete(`/delete-portfolio/:id`, middlewares, portfolioController.deletePortfolio);
+
 module.exports = router;
