@@ -47,7 +47,7 @@ exports.allPortfolio = async (req, res) => {
 exports.singlePortfolio = async (req, res) => {
     try{
         let {id}=req.params;
-        let data = await portfolioModel.find()
+        let data = await portfolioModel.findById(id)
 
         return res.status(200).json({
             success: true,

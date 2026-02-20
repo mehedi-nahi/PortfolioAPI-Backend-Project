@@ -5,6 +5,8 @@ const experienceController = require("../controllers/experienceController");
 const educationController = require("../controllers/educationController");
 const advantageController = require("../controllers/advantageController.js");
 const portfolioController = require("../controllers/portfolioController.js");
+const serviceController = require("../controllers/serviceController.js");
+const contactController = require("../controllers/contactController.js");
 
 let router = express.Router();
 
@@ -43,4 +45,16 @@ router.get(`/single-portfolio/:id`, portfolioController.singlePortfolio);
 router.post(`/update-portfolio/:id`,middlewares, portfolioController.updatePortfolio);
 router.delete(`/delete-portfolio/:id`, middlewares, portfolioController.deletePortfolio);
 
+// Service
+router.post(`/create-service`, middlewares, serviceController.createService);
+router.get(`/allservice`, serviceController.allService);
+router.get(`/single-service/:id`, serviceController.singleService);
+router.post(`/update-service/:id`,middlewares, serviceController.updateService);
+router.delete(`/delete-service/:id`, middlewares, serviceController.deleteService);
+
+// Service
+router.post(`/create-contact`, middlewares, contactController.createContact);
+router.get(`/allcontact`, contactController.allContact);
+router.get(`/single-contact/:id`, contactController.singleContact);
+router.delete(`/delete-contact/:id`, middlewares, contactController.deleteContact);
 module.exports = router;

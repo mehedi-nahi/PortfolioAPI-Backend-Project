@@ -47,7 +47,7 @@ exports.allExperience = async (req, res) => {
 exports.singleExperience = async (req, res) => {
     try{
         let {id}=req.params;
-        let data = await experienceModel.find()
+        let data = await experienceModel.findById(id)
 
         return res.status(200).json({
             success: true,

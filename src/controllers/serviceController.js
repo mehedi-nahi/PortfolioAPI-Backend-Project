@@ -1,14 +1,14 @@
-const educationModel = require('../models/educationModel.js');
+const serviceModel = require('../models/serviceModel.js');
 
 //experience-create
-exports.createEducation = async (req, res) => {
+exports.createService = async (req, res) => {
     try{
-        let {title,institute,description,time}=req.body;
+        let {title,description,img}=req.body;
 
-        let data = await educationModel.create ({title,institute,description,time})
+        let data = await serviceModel.create ({title,description,img})
         res.status(200).json({
             success: true,
-            message: "Education Created successfully",
+            message: "service Created successfully",
             data,
         });
 
@@ -24,13 +24,13 @@ exports.createEducation = async (req, res) => {
 }
 
 // experience get all data
-exports.allEducation = async (req, res) => {
+exports.allService = async (req, res) => {
     try{
-        let data = await educationModel.find()
+        let data = await serviceModel.find()
 
         return res.status(200).json({
             success: true,
-            message: "Education List",
+            message: "service List",
             data: data
         });
     }
@@ -44,14 +44,14 @@ exports.allEducation = async (req, res) => {
 }
 
 // experience single data
-exports.singleEducation = async (req, res) => {
+exports.singleService = async (req, res) => {
     try{
         let {id}=req.params;
-        let data = await educationModel.findById(id)
+        let data = await serviceModel.findById(id)
 
         return res.status(200).json({
             success: true,
-            message: "Single Education",
+            message: "single service",
             data: data
         });
     }
@@ -65,21 +65,21 @@ exports.singleEducation = async (req, res) => {
 }
 
 // experience single data UPDATE
-exports.updateEducation = async (req, res) => {
+exports.updateService = async (req, res) => {
     try{
         let {id}=req.params;
-        let {title,institute,description,time}=req.body;
-        let data = await educationModel.findByIdAndUpdate(
+        let {title,description,img}=req.body;
+        let data = await serviceModel.findByIdAndUpdate(
             id,
             {
-                title,institute,description,time
+                title,description,img
             },
             {new: true}
         );
 
         return res.status(200).json({
             success: true,
-            message: "Updated education",
+            message: "updated service",
             data: data
         });
     }
@@ -93,15 +93,15 @@ exports.updateEducation = async (req, res) => {
 }
 
 // experience delete
-exports.deleteEducation = async (req, res) => {
+exports.deleteService = async (req, res) => {
     try{
         let {id}=req.params;
-        let {title,institute,description,time}=req.body;
-        let data = await educationModel.findByIdAndDelete(id);
+        let {title,description,img}=req.body;
+        let data = await serviceModel.findByIdAndDelete(id);
 
         return res.status(200).json({
             success: true,
-            message: "Deleted education",
+            message: "Deleted service",
             data: data
         });
     }

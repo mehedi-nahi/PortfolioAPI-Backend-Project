@@ -1,14 +1,14 @@
-const educationModel = require('../models/educationModel.js');
+const contactModel = require('../models/contactModel.js');
 
 //experience-create
-exports.createEducation = async (req, res) => {
+exports.createContact = async (req, res) => {
     try{
-        let {title,institute,description,time}=req.body;
+        let {name,email,website,message}=req.body;
 
-        let data = await educationModel.create ({title,institute,description,time})
+        let data = await contactModel.create ({name,email,website,message})
         res.status(200).json({
             success: true,
-            message: "Education Created successfully",
+            message: "Contact Created successfully",
             data,
         });
 
@@ -24,13 +24,13 @@ exports.createEducation = async (req, res) => {
 }
 
 // experience get all data
-exports.allEducation = async (req, res) => {
+exports.allContact= async (req, res) => {
     try{
-        let data = await educationModel.find()
+        let data = await contactModel.find()
 
         return res.status(200).json({
             success: true,
-            message: "Education List",
+            message: "Contact List",
             data: data
         });
     }
@@ -44,14 +44,14 @@ exports.allEducation = async (req, res) => {
 }
 
 // experience single data
-exports.singleEducation = async (req, res) => {
+exports.singleContact = async (req, res) => {
     try{
         let {id}=req.params;
-        let data = await educationModel.findById(id)
+        let data = await contactModel.findById(id)
 
         return res.status(200).json({
             success: true,
-            message: "Single Education",
+            message: "Single Contact",
             data: data
         });
     }
@@ -65,11 +65,11 @@ exports.singleEducation = async (req, res) => {
 }
 
 // experience single data UPDATE
-exports.updateEducation = async (req, res) => {
+exports.updateContact = async (req, res) => {
     try{
         let {id}=req.params;
-        let {title,institute,description,time}=req.body;
-        let data = await educationModel.findByIdAndUpdate(
+        let {name,email,website,message}=req.body;
+        let data = await contactModel.findByIdAndUpdate(
             id,
             {
                 title,institute,description,time
@@ -79,7 +79,7 @@ exports.updateEducation = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: "Updated education",
+            message: "Updated Contact",
             data: data
         });
     }
@@ -93,15 +93,15 @@ exports.updateEducation = async (req, res) => {
 }
 
 // experience delete
-exports.deleteEducation = async (req, res) => {
+exports.deleteContact = async (req, res) => {
     try{
         let {id}=req.params;
-        let {title,institute,description,time}=req.body;
-        let data = await educationModel.findByIdAndDelete(id);
+        let {name,email,website,message}=req.body;
+        let data = await contactModel.findByIdAndDelete(id);
 
         return res.status(200).json({
             success: true,
-            message: "Deleted education",
+            message: "Deleted Contact",
             data: data
         });
     }

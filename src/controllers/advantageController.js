@@ -47,7 +47,7 @@ exports.allAdvantage = async (req, res) => {
 exports.singleAdvantage = async (req, res) => {
     try{
         let {id}=req.params;
-        let data = await advantageModel.find()
+        let data = await advantageModel.findById(id)
 
         return res.status(200).json({
             success: true,
