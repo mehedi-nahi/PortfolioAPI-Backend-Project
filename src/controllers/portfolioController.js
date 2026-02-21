@@ -1,6 +1,6 @@
 const portfolioModel = require('../models/portfolioModel.js');
 
-//experience-create
+//portfolio-create
 exports.createPortfolio = async (req, res) => {
     try{
         let {title,img,link,category}=req.body;
@@ -23,7 +23,7 @@ exports.createPortfolio = async (req, res) => {
     }
 }
 
-// experience get all data
+// portfolio get all data
 exports.allPortfolio = async (req, res) => {
     try{
         let data = await portfolioModel.find()
@@ -43,7 +43,7 @@ exports.allPortfolio = async (req, res) => {
     }
 }
 
-// experience single data
+// portfolio single data
 exports.singlePortfolio = async (req, res) => {
     try{
         let {id}=req.params;
@@ -64,7 +64,7 @@ exports.singlePortfolio = async (req, res) => {
     }
 }
 
-// experience single data UPDATE
+// portfolio single data UPDATE
 exports.updatePortfolio = async (req, res) => {
     try{
         let {id}=req.params;
@@ -92,7 +92,7 @@ exports.updatePortfolio = async (req, res) => {
     }
 }
 
-// experience delete
+// portfolio delete
 exports.deletePortfolio = async (req, res) => {
     try{
         let {id}=req.params;

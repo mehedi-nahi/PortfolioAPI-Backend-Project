@@ -1,6 +1,6 @@
 const serviceModel = require('../models/serviceModel.js');
 
-//experience-create
+//service-create
 exports.createService = async (req, res) => {
     try{
         let {title,description,img}=req.body;
@@ -23,7 +23,7 @@ exports.createService = async (req, res) => {
     }
 }
 
-// experience get all data
+// service get all data
 exports.allService = async (req, res) => {
     try{
         let data = await serviceModel.find()
@@ -43,7 +43,7 @@ exports.allService = async (req, res) => {
     }
 }
 
-// experience single data
+// service single data
 exports.singleService = async (req, res) => {
     try{
         let {id}=req.params;
@@ -64,7 +64,7 @@ exports.singleService = async (req, res) => {
     }
 }
 
-// experience single data UPDATE
+// service single data UPDATE
 exports.updateService = async (req, res) => {
     try{
         let {id}=req.params;
@@ -92,7 +92,7 @@ exports.updateService = async (req, res) => {
     }
 }
 
-// experience delete
+// service delete
 exports.deleteService = async (req, res) => {
     try{
         let {id}=req.params;

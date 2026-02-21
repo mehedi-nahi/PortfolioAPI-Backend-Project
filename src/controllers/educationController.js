@@ -1,6 +1,6 @@
 const educationModel = require('../models/educationModel.js');
 
-//experience-create
+//education-create
 exports.createEducation = async (req, res) => {
     try{
         let {title,institute,description,time}=req.body;
@@ -23,7 +23,7 @@ exports.createEducation = async (req, res) => {
     }
 }
 
-// experience get all data
+// education get all data
 exports.allEducation = async (req, res) => {
     try{
         let data = await educationModel.find()
@@ -43,7 +43,7 @@ exports.allEducation = async (req, res) => {
     }
 }
 
-// experience single data
+// education single data
 exports.singleEducation = async (req, res) => {
     try{
         let {id}=req.params;
@@ -64,7 +64,7 @@ exports.singleEducation = async (req, res) => {
     }
 }
 
-// experience single data UPDATE
+// education single data UPDATE
 exports.updateEducation = async (req, res) => {
     try{
         let {id}=req.params;
@@ -92,7 +92,7 @@ exports.updateEducation = async (req, res) => {
     }
 }
 
-// experience delete
+// education delete
 exports.deleteEducation = async (req, res) => {
     try{
         let {id}=req.params;

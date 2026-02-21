@@ -1,6 +1,6 @@
 const advantageModel = require('../models/advantageModel.js');
 
-//experience-create
+//advantage-create
 exports.createAdvantage = async (req, res) => {
     try{
         let {title,category,percent,time}=req.body;
@@ -23,7 +23,7 @@ exports.createAdvantage = async (req, res) => {
     }
 }
 
-// experience get all data
+// advantage get all data
 exports.allAdvantage = async (req, res) => {
     try{
         let data = await advantageModel.find()
@@ -43,7 +43,7 @@ exports.allAdvantage = async (req, res) => {
     }
 }
 
-// experience single data
+// advantage single data
 exports.singleAdvantage = async (req, res) => {
     try{
         let {id}=req.params;
@@ -64,7 +64,7 @@ exports.singleAdvantage = async (req, res) => {
     }
 }
 
-// experience single data UPDATE
+// advantage single data UPDATE
 exports.updateAdvantage = async (req, res) => {
     try{
         let {id}=req.params;
@@ -92,7 +92,7 @@ exports.updateAdvantage = async (req, res) => {
     }
 }
 
-// experience delete
+// advantage delete
 exports.deleteAdvantage = async (req, res) => {
     try{
         let {id}=req.params;

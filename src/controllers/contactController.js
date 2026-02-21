@@ -1,6 +1,6 @@
 const contactModel = require('../models/contactModel.js');
 
-//experience-create
+//contact-create
 exports.createContact = async (req, res) => {
     try{
         let {name,email,website,message}=req.body;
@@ -23,7 +23,7 @@ exports.createContact = async (req, res) => {
     }
 }
 
-// experience get all data
+// contact get all data
 exports.allContact= async (req, res) => {
     try{
         let data = await contactModel.find()
@@ -43,7 +43,7 @@ exports.allContact= async (req, res) => {
     }
 }
 
-// experience single data
+// contact single data
 exports.singleContact = async (req, res) => {
     try{
         let {id}=req.params;
@@ -64,7 +64,7 @@ exports.singleContact = async (req, res) => {
     }
 }
 
-// experience single data UPDATE
+// contact single data UPDATE
 exports.updateContact = async (req, res) => {
     try{
         let {id}=req.params;
@@ -92,7 +92,7 @@ exports.updateContact = async (req, res) => {
     }
 }
 
-// experience delete
+// contact delete
 exports.deleteContact = async (req, res) => {
     try{
         let {id}=req.params;
