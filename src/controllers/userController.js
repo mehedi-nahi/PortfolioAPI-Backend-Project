@@ -158,3 +158,24 @@ exports.update=async (req,res)=>
             });
         }
     }
+
+
+    // file upload
+exports.upload=async (req,res)=>
+{
+    try {
+        res.status(200).json({
+            success: true,
+            message: "File uploaded successfully",
+            data : req.file
+        });
+    }
+    catch(e)
+    {
+        res.status(500).json({
+            success: false,
+            error: e.toString(),
+            message: e.message
+        });
+    }
+}

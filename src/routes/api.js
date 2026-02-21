@@ -9,6 +9,7 @@ const serviceController = require("../controllers/serviceController.js");
 const contactController = require("../controllers/contactController.js");
 const blogController = require("../controllers/blogController.js");
 const commentController = require("../controllers/commentController.js");
+const fileUploads = require("../middlewares/fileUploads.js");
 
 let router = express.Router();
 
@@ -72,5 +73,8 @@ router.post(`/create-comment`, commentController.createComment);
 router.get(`/allcomment`, commentController.allComment);
 router.get(`/single-comment/:id`, commentController.singleComment);
 router.delete(`/delete-comment/:id`, middlewares, commentController.deleteComment);
+
+// file upload
+router.post (`/file-upload`,middlewares,fileUploads.single("file"), userController.upload);
 
 module.exports = router;
